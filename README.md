@@ -39,3 +39,11 @@ From the `frontend` directory:
 ```bash
 npm install
 npm run dev
+
+## Practical 2 — Routing & State
+
+- Added React Router v6 with 3 routes: `/`, `/projects`, `/contact`
+- NavBar uses `NavLink` for active-route highlighting (no full page reload)
+- Contact page: controlled input with live character count and preview
+- `useState` used for dark/light mode toggle (App.jsx) and help-tip visibility (Contact.jsx)
+- Added a 404 route for unmatched paths

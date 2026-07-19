@@ -1,35 +1,30 @@
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import Header from "./components/Header";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
+import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import ProjectsPage from "./pages/ProjectsPage";
+import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 
 function App() {
-  const skills = [
-    "Python",
-    "React",
-    "FastAPI",
-    "MongoDB",
-    "Docker",
-    "Git",
-    "REST APIs",
-  ];
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <div className="portfolio">
-      <Header
-        name="Prachi Mehta"
-        role="Software Engineer in Progress"
-        themeColor="#2563eb"
+    <div className={darkMode ? "portfolio dark" : "portfolio"}>
+      <NavBar
+       darkMode={darkMode}
+       onToggleDarkMode={() => setDarkMode((prev) => !prev)}
       />
 
-      <main>
-        <About />
-        <Skills skillList={skills} />
-        <Projects />
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
 
       <Footer name="Prachi Mehta" />
     </div>

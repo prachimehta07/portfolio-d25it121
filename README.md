@@ -121,3 +121,27 @@ Verified the following scenarios:
 - JavaScript (ES6+)
 - CSS
 - GitHub REST API
+
+
+## Practical 6 — Full Stack Integration
+
+- Tasks page (`/tasks`) connects to the Express + MongoDB backend (`task-manager-api-d25it121`)
+- Central `services/api.js` handles all backend calls with one shared `BASE_URL`
+- Optimistic UI update on task creation
+- Confirmation dialog before delete
+- Toast notifications for create/update/delete success and failure
+- All data persists in MongoDB — confirmed via browser refresh
+
+### Run Locally (both servers required)
+Backend:
+```bash
+cd task-manager-api-d25it121
+npm install
+npm run dev
+```
+Frontend:
+```bash
+cd portfolio-d25it121/frontend
+npm install
+npm run dev
+```

@@ -5,6 +5,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import Tasks from "./pages/Tasks";
 import ProjectsPage from "./pages/ProjectsPage";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -21,6 +22,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/tasks" element={<Tasks />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<NotFound />} />

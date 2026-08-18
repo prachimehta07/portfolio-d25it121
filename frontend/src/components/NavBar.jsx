@@ -7,6 +7,9 @@ function NavBar({ darkMode, onToggleDarkMode }) {
         <NavLink to="/" end className={({ isActive }) => isActive ? "active-link" : ""}>
           Home
         </NavLink>
+        <NavLink to="/tasks" className={({ isActive }) => isActive ? "active-link" : ""}>
+        Tasks
+        </NavLink>
         <NavLink to="/projects" className={({ isActive }) => isActive ? "active-link" : ""}>
           Projects
         </NavLink>

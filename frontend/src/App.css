@@ -407,3 +407,13 @@ body {
 
 .toast-success { background: #16a34a; }
 .toast-error { background: #dc2626; }
+
+.priority-select {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+}

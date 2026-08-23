@@ -13,6 +13,7 @@ function Tasks() {
   const [title, setTitle] = useState("");
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [toast, setToast] = useState({ message: "", type: "success" });
+  const [priority, setPriority] = useState("low");
 
   const showToast = (message, type = "success") => {
     setToast({ message, type });
@@ -36,26 +37,25 @@ function Tasks() {
     loadTasks();
   }, []);
 
-  const handleCreate = async (e) => {
-    e.preventDefault();
-    if (!title.trim()) return;
+const handleCreate = async (e) => {
+  e.preventDefault();
+  if (!title.trim()) return;
 
-    const tempId = `temp-${Date.now()}`;
-    const optimisticTask = { _id: tempId, title, completed: false, priority: "low" };
+  const tempId = `temp-${Date.now()}`;
+  const optimisticTask = { _id: tempId, title, completed: false, priority };
 
-    // Optimistic UI update: show immediately, reconcile with server after
-    setTasks((prev) => [optimisticTask, ...prev]);
-    setTitle("");
+  setTasks((prev) => [optimisticTask, ...prev]);
+  setTitle("");
 
-    try {
-      const saved = await createTask({ title: optimisticTask.title });
-      setTasks((prev) => prev.map((t) => (t._id === tempId ? saved : t)));
-      showToast("Task created");
-    } catch (err) {
-      setTasks((prev) => prev.filter((t) => t._id !== tempId));
-      showToast(err.message, "error");
-    }
-  };
+  try {
+    const saved = await createTask({ title: optimisticTask.title, priority });
+    setTasks((prev) => prev.map((t) => (t._id === tempId ? saved : t)));
+    showToast("Task created");
+  } catch (err) {
+    setTasks((prev) => prev.filter((t) => t._id !== tempId));
+    showToast(err.message, "error");
+  }
+};
 
   const handleToggleComplete = async (task) => {
     try {
@@ -87,15 +87,24 @@ function Tasks() {
         <h2>Task Manager</h2>
 
         <form className="task-form" onSubmit={handleCreate}>
-          <input
-            className="contact-input"
-            type="text"
-            placeholder="Add a new task..."
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <button className="theme-toggle" type="submit">Add</button>
-        </form>
+        <input
+          className="contact-input"
+          type="text"
+          placeholder="Add a new task..."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <select
+          className="priority-select"
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+        >
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <button className="theme-toggle" type="submit">Add</button>
+      </form>
 
         {loading && <Spinner />}
         {error && <ErrorMessage message={error} onRetry={loadTasks} />}

@@ -145,3 +145,9 @@ cd portfolio-d25it121/frontend
 npm install
 npm run dev
 ```
+## Practical 7 — Frontend Authentication
+
+- Added `/login` page supporting both login and registration
+- Token stored in `localStorage`, attached to all task API calls
+- 401 responses automatically clear the token and redirect to `/login`
+- Logout button added to NavBar when a session is active

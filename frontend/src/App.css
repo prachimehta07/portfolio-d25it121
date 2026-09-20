@@ -417,3 +417,11 @@ body {
   font-family: inherit;
   font-size: 14px;
 }
+
+.page-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 100px 0;
+}

@@ -151,3 +151,32 @@ npm run dev
 - Token stored in `localStorage`, attached to all task API calls
 - 401 responses automatically clear the token and redirect to `/login`
 - Logout button added to NavBar when a session is active
+
+## Practical 8 — Lazy Loading and Code Splitting
+
+### Objective
+To improve frontend performance using route-based lazy loading and code splitting with `React.lazy()` and `Suspense`.
+
+### Routes Lazy-Loaded
+- `/projects`, `/contact`, `/tasks`, `/login`, `/*` (404)
+- `/` (Home) stays eagerly loaded since it's the first route every visitor hits
+
+### Fallback UI
+- `PageLoader` component shown via `Suspense` while a route chunk loads
+- 300ms minimum delay added so the fallback never flickers on fast connections
+
+### Before / After (Network tab, gzip transfer size)
+
+| Metric | Before | After |
+|---|---|---|
+| JS transferred on load | 77.6 kB | 75.5 kB (initial) + chunk on demand |
+| Total requests | 4 | 6 (route chunks split out) |
+| Route chunk loaded on-demand | — | `ProjectsPage.js`, `ErrorMessage.js` (only when `/projects` visited) |
+
+Verified using Network tab throttled to Slow 3G — the `PageLoader` fallback is visibly shown while `/projects`'s chunk loads, before route content renders.
+
+### Concepts Demonstrated
+- `React.lazy()` and `Suspense`
+- Route-based code splitting
+- Fallback UI during chunk loading
+- Network tab performance profiling

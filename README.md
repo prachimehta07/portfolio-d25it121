@@ -212,3 +212,9 @@ Open the frontend at http://localhost:5173.
 ### Verification
 
 Verified the application using Docker Compose, confirmed that all three containers were running, and tested that task data persisted after stopping and restarting the containers.
+
+## Practical 13 — AI Subtask Generator
+
+- "Generate subtasks" button on the task form, with a loading state
+- Suggestions appear as an editable list with an AI-generated disclaimer; accepted steps are saved in the task description and shown as bullets
+- If the AI is unavailable, a notice is shown and task creation works normally

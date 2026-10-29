@@ -63,3 +63,11 @@ export function loginUser(email, password) {
     body: JSON.stringify({ email, password }),
   }).then(handleResponse);
 }
+
+export function generateSubtasks(title) {
+  return fetch(`${BASE_URL}/ai/subtasks`, {
+    method: "POST",
+    headers: authHeaders(),
+    body: JSON.stringify({ title }),
+  }).then(handleResponse);
+}

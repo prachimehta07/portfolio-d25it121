@@ -425,3 +425,44 @@ body {
   gap: 12px;
   padding: 100px 0;
 }
+
+.task-form {
+  flex-wrap: wrap;
+}
+
+.help-toggle:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.subtask-panel {
+  margin-bottom: 24px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  max-width: 600px;
+}
+
+.subtask-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.subtask-row .contact-input {
+  margin-top: 0;
+  flex: 1;
+}
+
+.task-main {
+  flex: 1;
+}
+
+.subtask-list {
+  margin: 8px 0 0 28px;
+  padding: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}

@@ -180,3 +180,35 @@ Verified using Network tab throttled to Slow 3G — the `PageLoader` fallback is
 - Route-based code splitting
 - Fallback UI during chunk loading
 - Network tab performance profiling
+
+## Practical 11 — Containerization with Docker and Docker Compose
+
+### Implementation
+
+- Created a Dockerfile for the Node.js and Express backend.
+- Created a multi-stage Dockerfile for the React frontend, using Node.js to build the application and Nginx to serve the production files.
+- Configured Docker Compose to run the frontend, backend, and MongoDB services together.
+- Connected the services using the `app-network` bridge network.
+- Added `.dockerignore` files to exclude `node_modules`, `.env`, and `.git` from the build context.
+- Configured the named volume `mongo-data` to preserve MongoDB data across container restarts.
+
+### Run the application
+
+Clone both repositories into sibling folders with the expected names:
+
+- `task-manager-api-d25it121`
+- `portfolio-d25it121`
+
+Create the backend `.env` file using `.env.example`, and configure a valid `JWT_SECRET`.
+
+From the backend repository root, run:
+
+```bash
+docker compose up --build
+```
+
+Open the frontend at http://localhost:5173.
+
+### Verification
+
+Verified the application using Docker Compose, confirmed that all three containers were running, and tested that task data persisted after stopping and restarting the containers.
